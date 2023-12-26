@@ -1,0 +1,24 @@
+<div class="box mt-5">
+  <div class="my-2 w-25">
+
+    <!-- [title & data] i send the Data from the Parent (allProd) to the Child (selectComponent)-->
+<app-select
+  [title]="CategoriesTitle"
+  [data]="categoriesArray"
+  (selectedEventValue)= "selectedCategory($event)">   <!-- i Receive the Data from the Child in selectedValue-->
+</app-select>           <!-- (selectedValue): Sender ,  selectedCategory(): Receiver-->
+
+  </div>
+  <div *ngIf="!loading" class="row">
+    <div class="col-md-2 col-sm-12 " *ngFor="let item of productsArray">
+      <app-product
+       [productData] ="item"
+       (addToCart)="addToCart($event)" >
+      </app-product>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="text-center w-100">
+    <app-spinner ></app-spinner>
+  </div>
+</div>
